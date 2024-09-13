@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.Employee;
+import com.example.model.UpdateEmployeeRequest;
 import com.example.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class RestEmployeeController {
     }
 
     @GetMapping(path = "/with-params")
-    public List<Employee> getEmployeeWithParams(@RequestParam(name = "firstName",required = false) String firstName,
+    public List<Employee> getEmployeeWithParams(@RequestParam(name = "firstName", required = false) String firstName,
                                                 @RequestParam(name = "lastName", required = false) String lastName) {
 
         return employeeService.getEmployeeWithParams(firstName, lastName);
@@ -43,4 +44,12 @@ public class RestEmployeeController {
 
         return employeeService.deleteEmployee(id);
     }
+
+    @PutMapping(path = "update/{id}")
+    public Employee updateEmployee(@PathVariable(name = "id") String id,
+                                   @RequestBody UpdateEmployeeRequest updatedEmployee) {
+        return employeeService.updateEmployee(id, updatedEmployee);
+    }
+
+
 }
