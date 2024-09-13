@@ -1,6 +1,7 @@
 package com.example.services;
 
 import com.example.model.Employee;
+import com.example.model.UpdateEmployeeRequest;
 import com.example.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,8 @@ public class EmployeeService {
 
     public boolean deleteEmployee(String id) {
         return employeeRepository.deleteEmployee(id);
+    }
+    public Employee updateEmployee(String id , UpdateEmployeeRequest request) {
+        return employeeRepository.updateEmployee(id, request);
     }
 }
